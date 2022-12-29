@@ -44,7 +44,7 @@ internal class Program
         app.MapBlazorHub();
         app.MapFallbackToPage("/_Host");
 
-        app.Run();
+        app.RunAsync();
     }
 
 
@@ -53,7 +53,11 @@ internal class Program
     {
         //MainSsr(args);
         // return;
-       Task.Run(() => MainSsr(args));
+        Task.Run(async () =>
+       {
+           MainSsr(args);
+           await Task.Delay(1000);
+       }).Wait();
 
 #if WINDOWS
         WindowsApplication.Init();
@@ -135,7 +139,8 @@ internal class Program
         Application.AddGlobalHandler(bridge);
 
         //Application.ContentProvider = new EmbeddedContentProvider("https://localhost:7047");
-        Application.Run(window, "https://0.0.0.0:5500");
+        //Application.Run(window, "https://blazor.app1.es");
+        Application.Run(window, "https://localhost:5001");
 
     }
 

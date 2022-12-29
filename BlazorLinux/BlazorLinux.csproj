@@ -10,6 +10,7 @@
 		<DefineConstants Condition="$(TargetFramework.Contains('-windows'))">$(DefineConstants);WIN</DefineConstants>
 		<DefineConstants Condition="$(TargetFramework.Contains('-linux'))">$(DefineConstants);LINUX</DefineConstants>
 		<UserSecretsId>50703830-1636-4d04-b7a6-9e7af4381fb6</UserSecretsId>
+		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 	</PropertyGroup>
 	
 	<ItemGroup>
