@@ -58,7 +58,7 @@ const windowConfig = {
     useBrowserTitle: true,
     enableScriptInterface: true,
     enableDevTools: true,
-    url: 'https://localhost:7047'
+    url: 'https://localhost:5001'
 };
 
 export function ModulePrompt(message) {

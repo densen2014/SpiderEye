@@ -1,7 +1,7 @@
-﻿// ********************************** 
-// Densen Informatica 中讯科技 
+﻿// **********************************
+// Densen Informatica 中讯科技
 // 作者：Alex Chow
-// e-mail:zhouchuanglin@gmail.com 
+// e-mail:zhouchuanglin@gmail.com
 // **********************************
 
 using Demo.Models;
@@ -13,7 +13,7 @@ using System.Reflection;
 namespace BlazorLinux.Pages;
 
 /// <summary>
-/// 
+///
 /// </summary>
 public partial class Index : IAsyncDisposable
 {
@@ -86,7 +86,7 @@ public partial class Index : IAsyncDisposable
 
     /// <summary>
     /// 获取文件信息完成回调方法
-    /// </summary> 
+    /// </summary>
     /// <returns></returns>
     [JSInvokable]
     public async Task GetStatus(string apiResult)
@@ -97,14 +97,14 @@ public partial class Index : IAsyncDisposable
             RawData = apiResult;
             StateHasChanged();
         }
-        catch 
+        catch
         {
         }
     }
 
     /// <summary>
     /// 获取文件信息完成回调方法
-    /// </summary> 
+    /// </summary>
     /// <returns></returns>
     [JSInvokable]
     public async Task GetResult(ApiResult e)
@@ -115,7 +115,7 @@ public partial class Index : IAsyncDisposable
             RawData = $"{e.success},{e.value},{e.error}";
             if (e.success)
             {
-
+                LongRunningTaskState = e.value?.ToString()??"Done!";
             }
             else
             {
@@ -123,14 +123,14 @@ public partial class Index : IAsyncDisposable
             }
             StateHasChanged();
         }
-        catch 
+        catch
         {
         }
     }
 
     /// <summary>
     /// 获取文件信息完成回调方法
-    /// </summary> 
+    /// </summary>
     /// <returns></returns>
     [JSInvokable]
     public async Task GetResult2(ApiResult2 e)
@@ -149,7 +149,7 @@ public partial class Index : IAsyncDisposable
             }
             StateHasChanged();
         }
-        catch 
+        catch
         {
         }
     }

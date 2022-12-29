@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 using Demo.Models;
 
 namespace Demo
@@ -11,7 +11,7 @@ namespace Demo
 
         public async Task RunLongProcedureOnTask()
         {
-            await Task.Delay(TimeSpan.FromSeconds(2));
+            await Task.Delay(TimeSpan.FromSeconds(3));
         }
 
         public void RunLongProcedure()
