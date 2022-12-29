@@ -1,28 +1,24 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-	<Import Project="..\Shared\SpiderEye.Playground.Shared.proj" />
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-windows10.0.17763</TargetFrameworks>
-		<!--<TargetFrameworks>net7.0;net7.0-linux;net7.0-windows10.0.17763;net7.0-maccatalyst</TargetFrameworks>-->
-		<UseWindowsForms>true</UseWindowsForms>
+		<TargetFrameworks>net7.0;net7.0-windows10.0.17763</TargetFrameworks>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWindowsForms Condition="$(TargetFramework.Contains('-windows'))">true</UseWindowsForms>
 		<ApplicationIcon>icon.ico</ApplicationIcon>
 		<DefineConstants Condition="$(TargetFramework.Contains('-maccatalyst'))">$(DefineConstants);MAC"</DefineConstants>
 		<DefineConstants Condition="$(TargetFramework.Contains('-windows'))">$(DefineConstants);WIN</DefineConstants>
 		<DefineConstants Condition="$(TargetFramework.Contains('-linux'))">$(DefineConstants);LINUX</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	  <LangVersion>9.0</LangVersion>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <LangVersion>9.0</LangVersion>
+		<UserSecretsId>50703830-1636-4d04-b7a6-9e7af4381fb6</UserSecretsId>
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<ProjectReference Include="..\..\Source\SpiderEye.Mac\SpiderEye.Mac.csproj" />
-		<ProjectReference Include="..\..\Source\SpiderEye.Windows\SpiderEye.Windows.csproj" />
-		<ProjectReference Include="..\..\Source\SpiderEye.Linux\SpiderEye.Linux.csproj" />
+		<PackageReference Include="Bildstein.SpiderEye.Core" Version="1.0.0-beta.5" />
+		<PackageReference Include="Bildstein.SpiderEye.Linux" Version="1.0.0-beta.5" />
+		<PackageReference Include="Bildstein.SpiderEye.Mac" Version="1.0.0-beta.5" />
+		<PackageReference Condition="$(TargetFramework.Contains('-windows'))" Include="Bildstein.SpiderEye.Windows" Version="1.0.0-beta.5" />
+		<PackageReference Include="System.IO.Ports" Version="7.0.0" />
+		<PackageReference Include="GtkSharp" Version="3.24.24.38" />
 	</ItemGroup>
 	
 	<ItemGroup>
@@ -40,16 +36,17 @@
 			<LogicalName>%(RelativeDir)%(Filename)%(Extension)</LogicalName>
 		</EmbeddedResource>
 	</ItemGroup> 
+	 
 	<ItemGroup>
 		<None Update="icon.icns">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 		<None Update="icon.ico">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 		<None Update="icon.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
-	</ItemGroup>  
- 
+	</ItemGroup>
+
 </Project>

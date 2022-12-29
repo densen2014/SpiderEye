@@ -1,8 +1,15 @@
 ﻿using System;
 using SpiderEye.Playground.Core;
-using SpiderEye.Windows;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
+#if Linux
+using SpiderEye.Linux;
+#elif IOS || MACCATALYST
+using SpiderEye.Mac;
+#elif WINDOWS
+using SpiderEye.Windows;
+#else
+using SpiderEye.Windows;
+#endif
 namespace SpiderEye.Playground
 {
     class Program : ProgramBase
@@ -10,7 +17,15 @@ namespace SpiderEye.Playground
         [STAThread]
         public static void Main(string[] args)
         {
+#if Linux
+            LinuxApplication.Init();
+#elif IOS || MACCATALYST
+            MacApplication.Init();
+#elif WINDOWS
             WindowsApplication.Init();
+#else
+            WindowsApplication.Init();
+#endif
             var icon = AppIcon.FromFile("icon", ".");
 
             using var statusIcon = new StatusIcon();
