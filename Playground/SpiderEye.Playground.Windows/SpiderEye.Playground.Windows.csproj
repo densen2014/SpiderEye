@@ -1,20 +1,55 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\Shared\SpiderEye.Playground.Shared.proj" />
+	<Import Project="..\Shared\SpiderEye.Playground.Shared.proj" />
 
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows10.0.17763</TargetFramework>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
-    <DefineConstants>$(DefineConstants);WIN</DefineConstants>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0-windows10.0.17763</TargetFramework>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ApplicationIcon>icon.ico</ApplicationIcon>
+		<DefineConstants>$(DefineConstants);WIN</DefineConstants>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Update="icon.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <LangVersion>9.0</LangVersion>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Source\SpiderEye.Windows\SpiderEye.Windows.csproj" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <LangVersion>9.0</LangVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Source\SpiderEye.Windows\SpiderEye.Windows.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<!-- The App folder is where all our html, css, js, etc. files are (change if you use a different folder) -->
+		<EmbeddedResource Include="App\**">
+			<!-- this retains the original filename of the embedded files (required to located them later) -->
+			<LogicalName>%(RelativeDir)%(Filename)%(Extension)</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="bridge\**">
+			<!-- this retains the original filename of the embedded files (required to located them later) -->
+			<LogicalName>%(RelativeDir)%(Filename)%(Extension)</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="src\**">
+			<!-- this retains the original filename of the embedded files (required to located them later) -->
+			<LogicalName>%(RelativeDir)%(Filename)%(Extension)</LogicalName>
+		</EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Remove="Models\PowerModel.cs" />
+	  <EmbeddedResource Remove="Models\SomeDataModel.cs" />
+	  <EmbeddedResource Remove="Bridge\UiBridge.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="bridge\spidereye2.js" />
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Update="bridge\spidereye2.js">
+	    <LogicalName>%(RelativeDir)%(Filename)%(Extension)</LogicalName>
+	  </EmbeddedResource>
+	</ItemGroup> 
+	<ItemGroup>
+		<None Update="icon.ico">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+ 
 </Project>
