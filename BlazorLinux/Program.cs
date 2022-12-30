@@ -51,14 +51,8 @@ internal class Program
     [STAThread]
     public static void Main(string[] args)
     {
-        //MainSsr(args);
-        // return;
-        Task.Run(async () =>
-       {
-           MainSsr(args);
-           await Task.Delay(1000);
-       }).Wait();
-
+        MainSsr(args);
+  
 #if WINDOWS
         WindowsApplication.Init();
 #else
@@ -82,11 +76,14 @@ internal class Program
         window.EnableScriptInterface = true;
         window.CanResize = true;
         window.BackgroundColor = "#303030";
-        window.Size = new Size(800, 600);
+        window.Size = new Size(1000, 700);
         window.MinSize = new Size(300, 200);
         window.MaxSize = new Size(1200, 900);
         window.Icon = icon;
+
+#if DEBUG
         window.EnableDevTools = true;
+#endif
 
 #if WINDOWS
        statusIcon.Icon = icon;
@@ -140,7 +137,7 @@ internal class Program
 
         //Application.ContentProvider = new EmbeddedContentProvider("https://localhost:7047");
         //Application.Run(window, "https://blazor.app1.es");
-        Application.Run(window, "http://localhost:5555");
+        Application.Run(window, "http://localhost:5000");
 
     }
 

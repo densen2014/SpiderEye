@@ -57,8 +57,8 @@ const windowConfig = {
     canResize: true,
     useBrowserTitle: true,
     enableScriptInterface: true,
-    enableDevTools: true,
-    url: 'http://localhost:5555'
+    //enableDevTools: true,
+    url: 'http://localhost:5000'
 };
 
 export function ModulePrompt(message) {

@@ -268,3 +268,4 @@ Publish
 
 # Angular publish folder from examples
 dist
+*.pubxml
