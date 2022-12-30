@@ -32,10 +32,10 @@ internal class Program
         {
             app.UseExceptionHandler("/Error");
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-            app.UseHsts();
+            //app.UseHsts();
         }
 
-        app.UseHttpsRedirection();
+        //app.UseHttpsRedirection();
 
         app.UseStaticFiles();
 
@@ -140,7 +140,7 @@ internal class Program
 
         //Application.ContentProvider = new EmbeddedContentProvider("https://localhost:7047");
         //Application.Run(window, "https://blazor.app1.es");
-        Application.Run(window, "https://localhost:5001");
+        Application.Run(window, "http://localhost:5000");
 
     }
 
