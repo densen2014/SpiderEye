@@ -71,13 +71,13 @@ internal class Program
             MacApplication.Init();
         }
 #endif
-        var icon = AppIcon.FromFile("icon", ".");
+        var icon = AppIcon.FromFile("icon", AppDomain.CurrentDomain.BaseDirectory );
 
 #if WINDOWS
         using var statusIcon = new StatusIcon();
 #endif
         using var window = new Window();
-        window.Title = "SpiderEye Playground";
+        window.Title = "BlazorLinux (Linux/Win/Mac)";
         window.UseBrowserTitle = true;
         window.EnableScriptInterface = true;
         window.CanResize = true;
@@ -140,7 +140,7 @@ internal class Program
 
         //Application.ContentProvider = new EmbeddedContentProvider("https://localhost:7047");
         //Application.Run(window, "https://blazor.app1.es");
-        Application.Run(window, "http://localhost:5000");
+        Application.Run(window, "http://localhost:5555");
 
     }
 
